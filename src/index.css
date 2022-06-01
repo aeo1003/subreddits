@@ -1,0 +1,70 @@
+/* import masonry from 'masonry-layout'; */
+
+
+.todo {
+  font-family: Georgia, sans serif;
+  font-size: 0.9rem;
+  margin: none;
+  padding:0px;
+  background-color: lightgoldenrodyellow;
+
+}
+
+
+.posts {
+  display: grid;
+  margin: 0 auto;
+   grid-template-columns: repeat(5, 1fr);
+   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+   gap: 0.5em;
+   padding: 0.5em;
+   
+ /* grid-template-rows: repeat(5, 1fr);; 
+ 
+  grid-auto-flow: dense;*/
+  /* flex-wrap: wrap;
+  gap: 1rem; */
+}
+
+.post { 
+  border: 1px solid black;
+  border-radius: 1em;
+  font-size: 0.8em;
+  padding: 0.5em;
+  /* max-width: 400px;
+  border: 1px solid black;
+  margin: 0.5rem;
+  padding: 0.5rem;
+  background-color: white;
+  /* width: 100%; */
+  
+}
+.temas {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: space-between;
+
+}
+
+.tema {
+  border: 1px solid black;
+  border-radius: 5px;
+  padding: 10px;
+  font-weight: 600;
+  background-color: rgb(235, 147, 39);
+}
+
+.navbar {
+  position: sticky;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  /* background-color: blueviolet; */
+  justify-content: space-around;
+  margin-bottom: 3rem;
+  padding: 0.5rem;
+}
