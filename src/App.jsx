@@ -51,12 +51,6 @@ function checkPosts() {
 
   return (
     <>
-      {/* <BrowserRouter>
-        <Routes>
-          {/* <Route path="/" element={<Head />} /> 
-        </Routes>
-      </BrowserRouter> */}
-      
       <header className='navbar'>
       <div className='temas'>
         {getSelected(temas).map((tema) =>  <div onClick={clickCat} key={tema.name} ><Head type="checkbox" 
