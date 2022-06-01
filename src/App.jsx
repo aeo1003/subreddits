@@ -65,6 +65,7 @@ function checkPosts() {
             <Datos col={bgcolor(post.data.link_flair_text)} isChecked={false} author={post.data.title} value='all' />
           </div>
         )}
+        <button>test</button>
       </div>
     </>
   )
