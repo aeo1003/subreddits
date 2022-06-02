@@ -26,8 +26,7 @@ const theme = createTheme({
     <>        
       <Grid item xs={2}>
         <ThemeProvider theme={theme} >
-        <Paper sx={{padding: 1, width: 1, backgroundColor: props.col,  display:"flex",
-    justifyContent:"center" }} >
+        <Paper sx={{padding: 1, width: 1, backgroundColor: props.col, display:"flex", justifyContent:"center" }} >
           <Typography variant='body3' sx={{ fontWeight: 'bold' }}>
             {props.name}
           </Typography>

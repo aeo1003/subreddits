@@ -16,6 +16,20 @@ try {
 
 }
 
+
+export function UTCtoDate(utc) {
+
+  let d = new Date(utc*1000);
+ // console.log(d.toLocaleString());
+
+
+  // var utcSeconds = utc;
+  // var d = new Date(0) // The 0 there is the key, which sets the date to the epoch
+  // d.setUTCSeconds(utcSeconds)
+  // console.log(d)
+  return d.toLocaleString();
+}
+
 export function getTemas(posts,colores) {
 
         let filteredArray = [];
