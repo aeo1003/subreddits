@@ -1,11 +1,15 @@
 
 export async function getPosts() {
 try {
-    //const res = await fetch('https://old.reddit.com/r/Futurology/?count=125&after=t3_v1vjbk')
-    const res = await fetch('https://old.reddit.com/r/Futurology.json');
+    const res = await fetch('https://www.reddit.com/r/Futurology.json');
     const data = await res.json();
-    
-    return data.data.children;
+    let d = []
+    data.data.children.map(p => {
+     (p.data.link_flair_text != 'meta')
+       ? d.push(p)
+       : console.log('no es meta');
+    })
+    return d;
 }catch (error) {
     console.log(error);
 }
@@ -14,17 +18,14 @@ try {
 
 export function getTemas(posts,colores) {
 
-//  if(posts.length > 0 && !posts==='undefined'){ 
-
-       // console.log('entro');
         let filteredArray = [];
         posts.map(post => {
-          !filteredArray.includes(post.data.link_flair_text)
+          (!filteredArray.includes(post.data.link_flair_text)&&(post.data.link_flair_text!='meta'))
              ? filteredArray.push(post.data.link_flair_text)
              : null
           }
         )
-      
+
        let tempArray = [];
        for(let i = 0; i < filteredArray.length; i++){
         let item = {
@@ -33,22 +34,12 @@ export function getTemas(posts,colores) {
                'selected': true
             };
            tempArray.push(item)
-          // console.log(tempArray)
         }
-        //console.log('temparray : '+tempArray)
         return tempArray
-  //  }
+
 }
 
 
-export function bgcolor(te, t) {
-  te.map(tema => {
-    if(tema.name === t)
-      //console.log('eeeeeeeeee'+tema.col)
-      return (tema.col)
-       //'sdlfk'
-  })
-}
 
 export function prueba (t,v) {
  for(let i = 0; i < t.length; i++){

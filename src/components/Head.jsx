@@ -1,18 +1,44 @@
 import React from 'react'
+import { Typography, Button, ButtonGroup,Container,Grid, Paper } from '@mui/material'
+import { createTheme, ThemeProvider } from "@mui/material";
 
-export default function Head(props) {
 
+
+const theme = createTheme({
+  components: {
+    MuiTypography: {
+      variants: [
+        {
+          props: {
+            variant: 'body3'
+          },
+          style: {
+            fontSize: 16,
+          }
+        }
+      ]
+    }
+  }
+  })
+
+
+
+  const Head = (props) => {
   return (
     <>        
-      {/* <div className='tema'>
-        {/* <input type="checkbox" name='tema' value={props.name}/>{props.name} 
-        <box style={{backgroundColor: props.col }} type="checkbox" name={props.name} value='all'/>{props.name}
-        
-      </div> */}
-
-      <button style={{backgroundColor: props.col }} className='tema'>
-          {props.name}
-      </button>  
+      <Grid item xs={2}>
+        <ThemeProvider theme={theme} >
+        <Paper sx={{padding: 1, width: 1, backgroundColor: props.col,  display:"flex",
+    justifyContent:"center" }} >
+          <Typography variant='body3' sx={{ fontWeight: 'bold' }}>
+            {props.name}
+          </Typography>
+        </Paper>
+        </ThemeProvider>
+      </Grid>
+   
     </>
   )
 }
+
+export default Head

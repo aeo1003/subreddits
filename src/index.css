@@ -1,8 +1,8 @@
 /* import masonry from 'masonry-layout'; */
 
 
-.todo {
-  font-family: Georgia, sans serif;
+.todo- {
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
   font-size: 0.9rem;
   margin: none;
   padding:0px;
@@ -11,13 +11,14 @@
 }
 
 
-.posts {
+.posts- {
   display: grid;
   margin: 0 auto;
    grid-template-columns: repeat(5, 1fr);
    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
    gap: 0.5em;
    padding: 0.5em;
+   top:100px;
    
  /* grid-template-rows: repeat(5, 1fr);; 
  
@@ -26,11 +27,12 @@
   gap: 1rem; */
 }
 
-.post { 
+.post- { 
   border: 1px solid black;
   border-radius: 1em;
   font-size: 0.8em;
   padding: 0.5em;
+  top: 100px;
   /* max-width: 400px;
   border: 1px solid black;
   margin: 0.5rem;
@@ -39,7 +41,7 @@
   /* width: 100%; */
   
 }
-.temas {
+.temas- {
   display: flex;
   flex-wrap: wrap;
   gap: 1rem;
@@ -47,7 +49,8 @@
 
 }
 
-.tema {
+.tema- {
+  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
   border: 1px solid black;
   border-radius: 5px;
   padding: 10px;
@@ -55,7 +58,7 @@
   background-color: rgb(235, 147, 39);
 }
 
-.navbar {
+.navbar- {
   position: sticky;
   top: 0;
   left: 0;
