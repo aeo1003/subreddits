@@ -1,7 +1,7 @@
 import React from 'react'
-import { Typography, Button, ButtonGroup,Container,Grid, Paper } from '@mui/material'
-import { createTheme, ThemeProvider } from "@mui/material";
-
+import { Typography, Button, ButtonGroup, Container, Grid, Paper } from '@mui/material'
+import { ThemeProvider } from "@mui/material/styles"
+import { createTheme } from '@mui/material/styles'
 
 
 const theme = createTheme({

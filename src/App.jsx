@@ -6,7 +6,6 @@ import { Typography, Box, Button, ButtonGroup, Container, Grid, Paper } from '@m
 import Navbar from './components/Navbar'
 import { makeStyles } from "@mui/styles"
 import { createTheme } from "@mui/material";
-
 import {BrowserRouter, Routes, Route, Navigate} from 'react-router-dom'
 
 
