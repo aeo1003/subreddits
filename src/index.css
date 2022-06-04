@@ -4,7 +4,7 @@
 .todo- {
   font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
   font-size: 0.9rem;
-  margin: none;
+  margin: 0;
   padding:0px;
   background-color: lightgoldenrodyellow;
 
@@ -13,7 +13,7 @@
 
 .posts- {
   display: grid;
-  margin: 0 auto;
+  margin: auto;
    grid-template-columns: repeat(5, 1fr);
    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
    gap: 0.5em;

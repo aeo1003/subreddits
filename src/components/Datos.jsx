@@ -1,5 +1,5 @@
 import React from 'react'
-import { Box,Grid, Paper, Typography } from '@mui/material/'
+import { Box,Divider,Grid, Paper, Typography } from '@mui/material/'
 import * as API from "../services/GetInfo"
 
 
@@ -14,15 +14,26 @@ const test = (url) => {
   return (
     <>     
       {/* <div onClick={(e=>test(e,props.url))} style={{backgroundColor: props.col }} className='post'> */}
-      <Grid item xs={3}>
-        <Paper elevation={2} sx={{ height: 1 }} onClick={(e=>test(props.url))} style={{backgroundColor: props.col, padding: '1rem' }}>
-         <Typography variant='outline'> {props.title} </Typography>      
-          <br/><br/>
-        <Typography variant='caption'> {API.UTCtoDate(props.utc)} </Typography>
+      <Grid item xs={12} sm={2} mb={3} mr={3}>
+        <Paper onClick={e=>test(props.url)} elevation={3} sx={{ height: '80%' }} 
+        style={{backgroundColor: props.col, padding: '1rem' }}>
+          <Typography mb='1rem' fontSize='1rem'> {props.title} </Typography>      
+          <Divider />
+          <br/>
+          {/* <Divider />
+          <Divider textAlign="right">RIGHT</Divider> */}
+          <Grid container spacing={2} direction='row'>
+            <Grid item xs={6}>
+               <Typography fontWeight={600} fontSize='1rem' variant="caption">{props.author}</Typography>
+            </Grid>
+            <Grid item xs={6} textAlign='right'>
+               <Typography fontWeight={600} fontSize='1.5rem' variant="caption">{props.num_comments}</Typography>
+            </Grid>
+          </Grid>
+          
+          <Typography fontSize='0.7rem' variant='overline'>{API.UTCtoDate(props.utc)}</Typography>
         </Paper>
       </Grid>
-
     </>
-
   )
 }

@@ -54,7 +54,6 @@ export function getTemas(posts,colores) {
 }
 
 
-
 export function prueba (t,v) {
  for(let i = 0; i < t.length; i++){
    if(t[i].name === v){
@@ -63,3 +62,21 @@ export function prueba (t,v) {
  }
 }
 }
+
+
+export function getSelected(t) {
+    
+  let st = []
+  t.map((tema,i) => {
+  (tema.selected)
+  ? st.push(tema)
+  : null
+  })
+  return st
+}
+
+export function test(url){
+  window.open(url)
+  console.log(url)
+  }
+  

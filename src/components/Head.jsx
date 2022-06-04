@@ -13,7 +13,9 @@ const theme = createTheme({
             variant: 'body3'
           },
           style: {
-            fontSize: 16,
+            fontSize: '1.7rem',
+            fontWeight: 'bold',
+            color: '#fff'
           }
         }
       ]
@@ -23,16 +25,19 @@ const theme = createTheme({
 
   const Head = (props) => {
   return (
-    <>        
-      <Grid item xs={2}>
-        <ThemeProvider theme={theme} >
-        <Paper sx={{padding: 1, width: 1, backgroundColor: props.col, display:"flex", justifyContent:"center" }} >
-          <Typography variant='body3' sx={{ fontWeight: 'bold' }}>
-            {props.name}
-          </Typography>
-        </Paper>
+    <>
+    {/* <Container fixed> */}
+      <Grid item xs={1}>
+        <ThemeProvider theme={theme} > {/* ATENCION A ESTA LINEA */}
+         {/* <Paper>{props.name}</Paper>
+           <Paper sx={{padding: .1, gap:2, backgroundColor: props.col, display:"block", justifyContent:"center" }}>
+            <Typography variant='overline' sx={{ fontWeight: 'bold'}}>
+              {props.name}
+            </Typography>
+          </Paper> */}
         </ThemeProvider>
       </Grid>
+    {/* </Container> */}
    
     </>
   )
