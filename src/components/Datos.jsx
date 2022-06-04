@@ -3,6 +3,21 @@ import { Box,Divider,Grid, Paper, Typography } from '@mui/material/'
 import * as API from "../services/GetInfo"
 
 
+const styles = (theme) => ({
+  root: {
+    padding: theme.spacing(1),
+    [theme.breakpoints.down('md')]: {
+      backgroundColor: theme.palette.secondary.main,
+    },
+    [theme.breakpoints.up('md')]: {
+      backgroundColor: theme.palette.primary.main,
+    },
+    [theme.breakpoints.up('lg')]: {
+      backgroundColor: green[500],
+    },
+  },
+});
+
 export default function Datos(props) {
   //console.log(props)
   
@@ -11,10 +26,12 @@ const test = (url) => {
  // console.log(url)
   }
 
+
+
   return (
     <>     
       {/* <div onClick={(e=>test(e,props.url))} style={{backgroundColor: props.col }} className='post'> */}
-      <Grid item xs={12} sm={2} mb={3} mr={3}>
+      <Grid item xs={12} sm={3} mb={3} mr={3}>
         <Paper onClick={e=>test(props.url)} elevation={3} sx={{ height: '80%' }} 
         style={{backgroundColor: props.col, padding: '1rem' }}>
           <Typography mb='1rem' fontSize='1rem'> {props.title} </Typography>      
