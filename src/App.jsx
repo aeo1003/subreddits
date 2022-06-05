@@ -9,12 +9,12 @@ import { createTheme } from "@mui/material"
 import {BrowserRouter, Routes, Route, Navigate} from 'react-router-dom'
 import  ButtonAppBar  from './components/ButtonAppBar'
 import './App.css'
+import Header from "./components/Header"
+import {Masonry} from '@mui/lab'
 
 const useStyles = makeStyles(() => ({
   container: {
-      // border: '9px solid red',
-      
-      padding: '10px',
+      padding: '10px 10px 10px 10px',
   },
   item: {
       padding: '10px',
@@ -27,23 +27,23 @@ const useStyles = makeStyles(() => ({
 export default function App() {
 
 
-  const BlueButton = styled(Button)({
-    backgroundColor: 'skyblue',
-    color: '#888',
-    margin: 5,
-    '&:hover': {
-      backgroundColor: '#ccc',
-      color: '#222'
-      },
-    '&:disabled': {
-      backgroundColor: 'gray',
-      color: 'white'
-      },
-      '&:active': {
-        backgroundColor: 'green',
-        color: 'black'
-        },
-    })
+  // const BlueButton = styled(Button)({
+  //   backgroundColor: 'skyblue',
+  //   color: '#888',
+  //   margin: 5,
+  //   '&:hover': {
+  //     backgroundColor: '#ccc',
+  //     color: '#222'
+  //     },
+  //   '&:disabled': {
+  //     backgroundColor: 'gray',
+  //     color: 'white'
+  //     },
+  //     '&:active': {
+  //       backgroundColor: 'green',
+  //       color: 'black'
+  //       },
+  //   })
 
 
 
@@ -67,31 +67,20 @@ function bgcolor(v)
 {
   return API.prueba(temas,v)
 }
-
-// const testArray = ['test1','test2','test3','test4']
-
   return (
     <>            
-          <ButtonAppBar position='static'/>
+      <ButtonAppBar position='static'/>
+      {/* <Header position='static' /> */}
 
-          {/* <Box className='sti'> */}
-            {/* <Box className='sti' padding={3} sx={{ backgroundColor: '#f1edee' }}> */}
-                <Grid container spacing={2.5} className='sti' >
-                {/* className={classes.container} */}
-                  {API.getSelected(temas).map((tema) => <Head key={tema.name} name={tema.name} col={tema.col}/> )} 
-                </Grid>           
-            {/* </Box> */}
-          {/* </Box> */}
+<br/><br/><br/><br/>
 
-          <br/><br/><br/><br/>
-{/* 
-          <BlueButton> test </BlueButton>
-          <Button> test2</Button> */}
-          
-          {/* <Box padding={4}>         */}
-            {/* <Grid container spacing={5}> */}
-            <Grid container justifyContent='center' direction="row" ml={1} mr={1}>
-              {posts.map(post =>  
+
+ 
+        <Box padding='0rem 3rem'>
+        <Masonry columns={{ xs: 1, sm: 3, md:4 }} spacing={2}>
+         
+          {posts.map(post =>
+            <Grid item key={post.data.title} xs={4} sm={4} md={2}>
                 <Datos 
                   key={post.data.created_utc} 
                   author={post.data.author} 
@@ -100,12 +89,14 @@ function bgcolor(v)
                   col={bgcolor(post.data.link_flair_text)} 
                   url={post.data.url_overridden_by_dest} 
                   isChecked={false} 
-                  title={post.data.title}/>
-                )} 
+                  title={post.data.title}
+                  subject={post.data.link_flair_text}
+                  />
             </Grid>
-          {/* </Box> */}
-          
-
+            )}
+            
+          </Masonry>
+          </Box>
     </>
   )
 }
