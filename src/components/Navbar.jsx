@@ -18,6 +18,6 @@ export default function Navbar() {
     }
   };
 
-//   return <div className={`h-16 w-full bg-gray-200 ${stickyClass}`}>Navbar</div>;
-  return <div className='navbar'>Navbar</div>;
+   return <div className={`h-16 w-full bg-gray-200 ${stickyClass}`}>Navbar</div>;
+  //return <div className='navbar'>Navbar</div>;
 }

@@ -1,13 +1,13 @@
 
-export async function getPosts() {
+export async function getPosts(subreddit) {
 try {
-    const res = await fetch('https://www.reddit.com/r/Futurology.json');
+    const res = await fetch(`https://www.reddit.com/r/${subreddit}.json`);
     const data = await res.json();
     let d = []
     data.data.children.map(p => {
      (p.data.link_flair_text != 'meta')
        ? d.push(p)
-       : console.log('no es meta');
+       : null
     })
     return d;
 }catch (error) {
