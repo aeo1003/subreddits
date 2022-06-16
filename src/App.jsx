@@ -51,7 +51,8 @@ export default function App() {
   // },[sub])
   const colores = ['#AFDB37','#89C5D3','#8C9DCF','#EAACBD','#E9BB2','#a8D0C6','#b7EDC3','#DEA4C0','#f1ed22','#dcd2d3','#eae4d2','#c6d5d8','#717876','#849498'] 
   //const colores = ['#6b6a6b','#77d4ff','#5e947b','#397198','#85c4c4','#fff777','#1f4c82','#8cb047','#f3cac9','#f3cac9','#b61d33','#be4576','#76e38d','#b268f6','#77fdff','#ffad77','#fc616c','#6867ac','#6867ac','#a75f9a','#309472','#d05171','#ebc057','#dccdbe','#63b0ae','#d8593e']
-  
+  const subnames = ['Futurology','Biology','Science']
+
   const classes = useStyles()
 
 
@@ -68,7 +69,10 @@ export default function App() {
 
   const handleMenuClose = (e) => {
     setAnchorEl(null);
-    actualiza(e.currentTarget.innerText)
+    if (subnames.includes(e.currentTarget.innerText)) {      
+      actualiza(e.currentTarget.innerText)
+      setAnchorEl(null);
+    }
   };
 
 
