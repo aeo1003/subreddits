@@ -24,7 +24,7 @@ export default function ButtonAppBar() {
   const handleMenuClose = (e) => {
     setAnchorEl(null);
     //setTitle(e.currentTarget.innerText);
-    localStorage.setItem('title', e.currentTarget.innerText)
+   // localStorage.setItem('title', e.currentTarget.innerText)
   };
 
 
