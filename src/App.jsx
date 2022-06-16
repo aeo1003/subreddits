@@ -68,10 +68,7 @@ export default function App() {
 
   const handleMenuClose = (e) => {
     setAnchorEl(null);
-    //setTitle(e.currentTarget.innerText);
-    //localStorage.setItem('title', e.currentTarget.innerText)
     actualiza(e.currentTarget.innerText)
-    //setTitle(e.currentTarget.innerText)
   };
 
 
@@ -105,7 +102,7 @@ export default function App() {
         <MenuItem onClick={handleMenuClose}>Science</MenuItem>
         <MenuItem onClick={handleMenuClose}>Biology</MenuItem>
       </Menu>
-      <Typography variant='h4'> {localStorage.getItem('title')} </Typography>
+      <Typography variant='h4'> {title} </Typography>
       <div style={{ marginLeft: "auto" }}>
         <IconButton
           size="large"
