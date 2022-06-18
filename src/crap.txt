@@ -1,0 +1,43 @@
+  <AppBar style={{ marginBottom: "2rem", top:"0", width:'100%' }} position="sticky" color="primary">
+    <Toolbar>
+      <IconButton
+        size="large"
+        edge="start"
+        color="inherit"
+        aria-label="menu"
+        sx={{ mr: 4 }}
+        onClick={(event) => handleMenuClick(event)}
+      >
+        <MenuIcon />
+      </IconButton>
+
+      <Menu
+        id="basic-menu"
+        anchorEl={anchorEl}
+        open={isMenuOpen}
+        onClose={handleMenuClose}
+      >
+
+
+        {subnames.map((sub, index) => (
+          <MenuItem key={index} onClick={(e) => handleMenuClose(e)}>{sub}</MenuItem>
+        ))}
+
+      </Menu>
+      <Typography variant='h4'> {title} </Typography>
+
+        <IconButton
+          size="large"
+          edge="end"
+          color="inherit"
+          aria-label="menu"
+          sx={{ mr: 2 }}
+          onClick={(event) => handleMenuClick(event)}
+        >
+          {/* <Avatar>
+            <AccountIcon />
+          </Avatar> */}
+        </IconButton>
+
+    </Toolbar>
+  </AppBar>

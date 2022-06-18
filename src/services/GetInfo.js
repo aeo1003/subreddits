@@ -1,7 +1,10 @@
+import React from "react"
+
+export let testVar = 'esto es una prueba de contexto'
 
 export async function getPosts(subreddit) {
 try {
-    const res = await fetch(`https://www.reddit.com/r/${subreddit}.json?limit=100`);
+    const res = await fetch(`https://www.reddit.com/r/${subreddit}/hot.json?limit=50`); //?limit=100
     const data = await res.json();
     let d = []
     data.data.children.map(p => {

@@ -71,7 +71,7 @@ const openSite = (url) => {
     <>     
     <ThemeProvider theme={theme}>
     {/* <Grid item xs={12} sm={6} md={12}> */}
-    <motion.div animate={{scale: 1 }} initial={{scale:0}}>
+    
       <Paper onClick={e=>openSite(props.url)} elevation={5} style={{backgroundColor:'#ddd'}}>
         <Box style={{backgroundColor: props.col}} >
           <Grid container direction='row'>
@@ -101,8 +101,8 @@ const openSite = (url) => {
           <Typography fontSize='.8rem' variant="caption" textAlign='left'> {API.UTCtoDate(props.utc)} </Typography>
         </Box>
       </Paper>
-      </motion.div>
     </ThemeProvider>
+    
     </>
   )
 }

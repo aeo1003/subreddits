@@ -6,6 +6,7 @@ import Datos from './Datos'
 import { makeStyles } from "@mui/styles"
 
 
+import {motion} from 'framer-motion'
 
 
 
@@ -43,12 +44,13 @@ export default function BlockOfNews({posts, temas}) {
     return (
     
     <>
-        <Box ml={2} >
+    {/* <motion.div animate={{scale: 1 }} initial={{scale:0}}> </motion.div> */}
+        <Box ml={2} mt={4}>
             <Masonry columns={{ xs: 1, sm: 2, md:3, lg:4 }} spacing={2}>
             
             {posts.map(post =>
             
-                <Grid item key={post.data.title}  xs={4} sm={4} md={2}>
+                <Grid item key={post.data.created}  xs={4} sm={4} md={2}>
                     
                         <Datos 
                         key={post.data.created_utc} 
@@ -69,7 +71,7 @@ export default function BlockOfNews({posts, temas}) {
             </Masonry>
           </Box>
     
-    
+         
     </>
 
     )
