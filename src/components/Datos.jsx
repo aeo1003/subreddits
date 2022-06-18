@@ -4,23 +4,23 @@ import * as API from "../services/GetInfo"
 import { makeStyles } from "@mui/styles"
 import { createTheme, ThemeProvider } from "@mui/material"
 
+import {motion} from 'framer-motion'
 
 
-
-const mystyles = (theme) => ({
-  root: {
-    padding: theme.spacing(1),
-    [theme.breakpoints.down('md')]: {
-      backgroundColor: theme.palette.secondary.main,
-    },
-    [theme.breakpoints.up('md')]: {
-      backgroundColor: theme.palette.primary.main,
-    },
-    [theme.breakpoints.up('lg')]: {
-      backgroundColor: green[500],
-    },
-  },
-});
+// const mystyles = (theme) => ({
+//   root: {
+//     padding: theme.spacing(1),
+//     [theme.breakpoints.down('md')]: {
+//       backgroundColor: theme.palette.secondary.main,
+//     },
+//     [theme.breakpoints.up('md')]: {
+//       backgroundColor: theme.palette.primary.main,
+//     },
+//     [theme.breakpoints.up('lg')]: {
+//       backgroundColor: green[500],
+//     },
+//   },
+// });
 
 
 const useStyles = makeStyles({
@@ -71,16 +71,19 @@ const openSite = (url) => {
     <>     
     <ThemeProvider theme={theme}>
     {/* <Grid item xs={12} sm={6} md={12}> */}
+    <motion.div animate={{scale: 1 }} initial={{scale:0}}>
       <Paper onClick={e=>openSite(props.url)} elevation={5} style={{backgroundColor:'#ddd'}}>
-        <Box padding='.3rem .3rem' style={{backgroundColor: props.col}} >
+        <Box style={{backgroundColor: props.col}} >
           <Grid container direction='row'>
+
             <Grid item xs={6} sm={6} md={6} >
               <Typography ml={1}
-                          fontWeight='600' 
-                          fontSize='0.8rem' 
-                          variant="bold">{props.num_comments}
+                         // fontWeight='600' 
+                         // fontSize='0.8rem' 
+                          variant="body3">{props.num_comments}
               </Typography>
             </Grid>
+
             <Grid item xs={6} sm={6} md={6} textAlign='end'>
               <Typography mr={1}               
                           fontWeight='600' 
@@ -88,16 +91,17 @@ const openSite = (url) => {
                           variant="caption">{props.subject}
               </Typography>
             </Grid>
+
           </Grid>
         </Box>
-        <Box p={1}>
+        <Box p={1} style={{cursor:'pointer'}}>
           <Typography fontSize='1rem' variant="caption" align='left'> {props.title} </Typography>
           <br/><br/><br/>
           <Divider />
           <Typography fontSize='.8rem' variant="caption" textAlign='left'> {API.UTCtoDate(props.utc)} </Typography>
         </Box>
       </Paper>
-
+      </motion.div>
     </ThemeProvider>
     </>
   )

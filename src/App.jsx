@@ -7,7 +7,7 @@ import {BrowserRouter, Routes, Route, Navigate} from 'react-router-dom'
 import  ButtonAppBar  from './components/ButtonAppBar'
 import './App.css'
 import BlockOfNews from './components/BlockOfNews'
-import { subsContext } from './Contexts/subs'
+import { SubsContext } from './Contexts/SubsContext'
 //import {title} from './components/ButtonAppBar';
 
 const useStyles = makeStyles(() => ({
@@ -25,11 +25,11 @@ export default function App() {
 
   const [posts, setPosts] = useState([])
   const [temas, setTemas] = useState([])
-  const [title, setTitle] = useState('futurology')
+  const [title, setTitle] = useState('Futurology')
 
   
   useEffect(()=> {
-    API.getPosts('futurology').then(setPosts)
+    API.getPosts('Futurology').then(setPosts)
    // localStorage.setItem('title', 'futurology')
   },[])
 
@@ -42,16 +42,9 @@ export default function App() {
   API.getPosts(title).then(setPosts)
  }
 
-
-  // useEffect(() => {
-  //  // localStorage.setItem('title', {sub})
-  //  //console.log('sub es : '+sub)
-  //   API.getPosts(localStorage.getItem('title')).then(setPosts)
-  //  // setSub(localStorage.getItem('title'))
-  // },[sub])
   const colores = ['#AFDB37','#89C5D3','#8C9DCF','#EAACBD','#E9BB2','#a8D0C6','#b7EDC3','#DEA4C0','#f1ed22','#dcd2d3','#eae4d2','#c6d5d8','#717876','#849498'] 
   //const colores = ['#6b6a6b','#77d4ff','#5e947b','#397198','#85c4c4','#fff777','#1f4c82','#8cb047','#f3cac9','#f3cac9','#b61d33','#be4576','#76e38d','#b268f6','#77fdff','#ffad77','#fc616c','#6867ac','#6867ac','#a75f9a','#309472','#d05171','#ebc057','#dccdbe','#63b0ae','#d8593e']
-  const subnames = ['Futurology','Biology','Science','Nature','History','Technology','Singularity']
+  const subnames = ['Futurology','Reactjs','Science','Nature','History','Technology','Singularity']
 
   const classes = useStyles()
 
@@ -71,7 +64,7 @@ export default function App() {
     setAnchorEl(null);
     if (subnames.includes(e.currentTarget.innerText)) {      
       actualiza(e.currentTarget.innerText)
-      setAnchorEl(null)
+      //setAnchorEl(null)
     }
   };
 
@@ -83,7 +76,7 @@ export default function App() {
     <>            
       {/* <ButtonAppBar /> */}
 
-      <AppBar style={{ marginBottom: "2rem", top:"0", width:'100%' }} position="sticky" color="secondary">
+    <AppBar style={{ marginBottom: "2rem", top:"0", width:'100%' }} position="sticky" color="primary">
     <Toolbar>
       <IconButton
         size="large"
@@ -102,9 +95,14 @@ export default function App() {
         open={isMenuOpen}
         onClose={handleMenuClose}
       >
+
+
         {subnames.map((sub, index) => (
-          <MenuItem key={index} onClick={handleMenuClose}>{sub}</MenuItem>
+          // <MenuItem key={index} onClick={handleMenuClose}>{sub}</MenuItem>
+          <MenuItem key={index} onClick={(e) => handleMenuClose(e)}>{sub}</MenuItem>
         ))}
+
+
 
       </Menu>
       <Typography variant='h4'> {title} </Typography>

@@ -1,7 +1,7 @@
 
 export async function getPosts(subreddit) {
 try {
-    const res = await fetch(`https://www.reddit.com/r/${subreddit}.json`);
+    const res = await fetch(`https://www.reddit.com/r/${subreddit}.json?limit=100`);
     const data = await res.json();
     let d = []
     data.data.children.map(p => {

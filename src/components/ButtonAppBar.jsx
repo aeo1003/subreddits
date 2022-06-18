@@ -1,6 +1,6 @@
 import * as React from 'react';
 import {MenuItem, AppBar, Menu, Toolbar, Typography, IconButton} from '@mui/material';
-import { subsContext } from '../Contexts/subs';
+import { SubsContext } from '../Contexts/SubsContext';
 import AccountIcon from "@mui/icons-material/AccountCircle";
 import MenuIcon from "@mui/icons-material/Menu";
 import { SettingsOutlined } from '@mui/icons-material';
