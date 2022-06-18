@@ -58,7 +58,7 @@ export default function BlockOfNews({posts, temas}) {
                         num_comments={post.data.num_comments} 
                         utc={post.data.created_utc} 
                         col={bgcolor(post.data.link_flair_text)} 
-                        url={post.data.url_overridden_by_dest} 
+                        url={post.data.url} 
                         isChecked={false} 
                         title={post.data.title}
                         subject={post.data.link_flair_text}

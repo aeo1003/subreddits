@@ -43,12 +43,12 @@ export default function App() {
   }
 
   const colores = ['#AFDB37','#89C5D3','#8C9DCF','#EAACBD','#E9BB2','#a8D0C6','#b7EDC3','#DEA4C0','#f1ed22','#dcd2d3','#eae4d2','#c6d5d8','#717876','#849498'] 
-  const subnames = ['Futurology','Reactjs','Science','Worldnews','History','Technology','Singularity']
+  //const subnames = ['Futurology','Reactjs','Science','Worldnews','Learnjavascript','Technology','Singularity']
 
   // const classes = useStyles()
   
   return (
-    <>            
+    <>  
       <ButtonAppBar onChange={(e) => reloadPosts(e)} value={title} />
       <BlockOfNews posts={posts} temas={temas}/>
     </>
