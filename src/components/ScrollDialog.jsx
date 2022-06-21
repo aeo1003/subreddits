@@ -7,6 +7,7 @@ import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import Typography from '@mui/material/Typography';
 import BlockOfNews from './BlockOfNews';
+import { Box } from '@mui/system';
 
 export default function ScrollDialog(props) {
   const [open, setOpen] = React.useState(true);
@@ -34,7 +35,7 @@ export default function ScrollDialog(props) {
     if (open && props.tempComments.length > 0) {
         let t = ''
         props.tempComments.map(item => {
-            t = t + `${item.data.body}`
+            t = t + `🤨🤨🤨🤨🤨🤨🤨🤨🤨🤨🤨🤨🤨🤨🤨🤨🤨🤨${item.data.body}`
         })
         //console.log(t)
         setMyText(t)
@@ -61,9 +62,9 @@ export default function ScrollDialog(props) {
          aria-labelledby="scroll-dialog-title"
          aria-describedby="scroll-dialog-description"
       >
-        <DialogTitle id="scroll-dialog-title">Subscribe</DialogTitle>
+        <DialogTitle id="scroll-dialog-title">Comments</DialogTitle>
         <DialogContent dividers={scroll === 'paper'}>
-
+        <Typography variant='h2'> 
           <DialogContentText
             id="scroll-dialog-description"
             ref={descriptionElementRef}
@@ -74,10 +75,11 @@ export default function ScrollDialog(props) {
             {myText}
 
           </DialogContentText>
+          </Typography>
         </DialogContent>
         <DialogActions>
-          <Button onClick={handleClose}>Cancel</Button>
-          <Button onClick={handleClose}>Subscribe</Button>
+          <Button onClick={handleClose}>OK</Button>
+          {/* <Button onClick={handleClose}>Subscribe</Button> */}
         </DialogActions>
       </Dialog>
     </div>
