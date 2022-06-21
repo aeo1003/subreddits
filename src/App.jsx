@@ -26,10 +26,10 @@ export default function App() {
 
   const [posts, setPosts] = useState([])
   const [temas, setTemas] = useState([])
-  const [title, setTitle] = useState('Futurology')
+  const [title, setTitle] = useState('Worldnews')
   
   useEffect(()=> {
-    API.getPosts('Futurology').then(setPosts)
+    API.getPosts('Worldnews').then(setPosts)
    
   },[])
 

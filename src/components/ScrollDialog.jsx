@@ -5,11 +5,13 @@ import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
+import BlockOfNews from './BlockOfNews';
 
 export default function ScrollDialog(props) {
   const [open, setOpen] = React.useState(true);
   const [scroll, setScroll] = React.useState('paper');
 
+  const {onClose} =  props;
   const handleClickOpen = (scrollType) => () => {
     setOpen(true)
     setScroll(scrollType)
@@ -17,6 +19,8 @@ export default function ScrollDialog(props) {
 
   const handleClose = () => {
     setOpen(false)
+    console.log('se cierra')
+    onClose(props.handleMenuClose)
   }
 
   const descriptionElementRef = React.useRef(null);
@@ -42,8 +46,8 @@ export default function ScrollDialog(props) {
         onClose={handleClose}
         scroll={scroll}
        // scroll='paper'
-        aria-labelledby="scroll-dialog-title"
-        aria-describedby="scroll-dialog-description"
+        // aria-labelledby="scroll-dialog-title"
+        // aria-describedby="scroll-dialog-description"
       >
         <DialogTitle id="scroll-dialog-title">Subscribe</DialogTitle>
         <DialogContent dividers={scroll === 'paper'}>

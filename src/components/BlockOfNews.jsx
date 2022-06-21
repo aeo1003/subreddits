@@ -21,8 +21,9 @@ export default function BlockOfNews({posts, temas, titu}) {
       return API.prueba(temas,v)
     }
 
-    const handleClose = () => {
+    const handleMenuClose = (e) => {
         setChildData(false)
+        console.log('Esto es e : ' + e)
     }
 
     React.useEffect(() => {
@@ -33,6 +34,7 @@ export default function BlockOfNews({posts, temas, titu}) {
     //    console.log('Esto es e : ' + e)
     // }
     const passData = (e) => {
+        console.log('y este e : '+e)
         setChildData(e)
     }
 
@@ -65,8 +67,8 @@ export default function BlockOfNews({posts, temas, titu}) {
     return (
     
     <>
-    {childData ? <ScrollDialog passData={passData} 
-     onClose={handleClose} /> : null}
+    {childData ? <ScrollDialog passData={passData} onClose={()=>handleMenuClose()} /> : null}
+
     {/* <ScrollDialog passData={passData} onClose={handleClose}/> */}
     {/* <motion.div animate={{scale: 1 }} initial={{scale:0}}> </motion.div> */}
         <Box ml={2} mt={4}>

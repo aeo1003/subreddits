@@ -20,16 +20,7 @@ export default function ButtonAppBar(props) {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const isMenuOpen = Boolean(anchorEl);
 
-  const handleMenuClick = (event) => {
-    setAnchorEl(event.currentTarget)
-  };
 
-  const handleMenuClose = (e) => {
-    setAnchorEl(null);
-    if (subnames.includes(e.currentTarget.innerText)) {      
-      props.onChange(e.currentTarget.innerText)
-    }
-  };
 
 
 
@@ -50,6 +41,19 @@ export default function ButtonAppBar(props) {
     }
   }
 
+  const handleMenuClick = (e) => {
+    //console.log('el otro e : '+e.currentTarget)
+    setAnchorEl(e.currentTarget)
+  };
+
+  const handleMenuClose = (e) => {
+    setAnchorEl(null);
+    
+    if (subnames.includes(e.currentTarget.innerText)) {      
+      props.onChange(e.currentTarget.innerText)
+    }
+  };
+
   return (
   <AppBar style={ scrollDirection === "up" ? styles.hidden : styles.active }  position="sticky" color="primary">
     <Toolbar>
@@ -59,7 +63,7 @@ export default function ButtonAppBar(props) {
         color="inherit"
         aria-label="menu"
         sx={{ mr: 2 }}
-        onClick={(event) => handleMenuClick(event)}
+        onClick={(e) => handleMenuClick(e)}
       >
         <MenuIcon />
       </IconButton>

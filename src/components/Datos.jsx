@@ -69,7 +69,7 @@ const openSite = (url) => {
  // console.log(url)
   }
 
-  const classes = useStyles()   
+const classes = useStyles()   
 
 const [comments, setComments] = React.useState([])
 const [modalUp, setModalUp] = React.useState(false)
@@ -80,23 +80,21 @@ const handleCommentsClick = () => {
    // API.getComments(props.perma).then(setComments)
    props.passData(true)
     setModalUp(true)
-   console.log('ModalUp antes del set : '+modalUp)
-  // setModalUp(true)
-  // console.log('ModalUp despues del set : '+props.passData(true))
-    
-
-   // return(<ScrollDialog onClose={handleClose}/>)
+   //console.log('e.currentTarget : '+e)
 }
 
 const handleChange = (e) => {
+  if (!modalUp) {
+    setModalUp(true)
+   } else {
+     setModalUp(false)
+   }
   props.onChange(modalUp)
 }
 
-// React.useEffect(() => {
-//   if ((comments) && (comments.length > 0)){
-//    return ( <div>hay comentarios</div>)
-//   }
-// }, [modalUp])
+React.useEffect(() => {
+  
+}, [modalUp])
 
 
 React.useEffect(() => {
@@ -109,15 +107,13 @@ React.useEffect(() => {
     <>     
     
     <ThemeProvider theme={theme}>
-    {/* <Grid item xs={12} sm={6} md={12}> */}
       <Paper  elevation={5} style={{backgroundColor:'#ddd'}}>
 
           <Grid container direction='row' style={{backgroundColor: props.col}} display='-ms-inline-flexbox'>                        
             <Grid item xs={1} sm={1} md={1} p={0.5}>
-            {/* <Box p={0} sx={{display: 'flex', flexDirection: 'row', alignItems: 'center'}}> */}
-                    {/* <Box> */}
+
                     <ThumbUpAltOutlinedIcon />
-                    {/* </Box> */}
+
             </Grid>
             <Grid item xs={1} sm={1} md={1} p={0.5} textAlign='start' ml={1}>
                     <Typography 
@@ -125,7 +121,7 @@ React.useEffect(() => {
                         variant="display1"                       
                         >{props.ups}
                     </Typography>
-            {/* </Box> */}
+
             </Grid>
 
             <Grid item xs={9} sm={9} md={9} p={0.5} textAlign='end'>
@@ -150,14 +146,13 @@ React.useEffect(() => {
                 size="small"
                 color="inherit"
                 aria-label="menu"
-               // onClick={ () =>  props.passData(true)}
-                onClick={() => handleCommentsClick()}
+                onClick={(e) => handleCommentsClick(e)}
               >
-                    <Typography 
-                        mr={1}
-                        variant="body3">{props.num_comments}
-                    </Typography>
-                    <ForumOutlinedIcon />
+                   <Typography 
+                      mr={1}
+                      variant="body3">{props.num_comments}
+                  </Typography>
+                  <ForumOutlinedIcon />
               </IconButton>
           </Box>
         </Box>
