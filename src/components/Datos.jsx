@@ -1,10 +1,14 @@
 import React from 'react'
-import { Box,Divider,Grid, Paper, Typography } from '@mui/material/'
+import { Box,Divider,Grid, Paper, Typography, IconButton} from '@mui/material/'
 import * as API from "../services/GetInfo"
 import { makeStyles } from "@mui/styles"
 import { createTheme, ThemeProvider } from "@mui/material"
-
+import ForumIcon from '@mui/icons-material/Forum';
+import ForumOutlinedIcon from '@mui/icons-material/ForumOutlined';
+import ThumbUpAltOutlinedIcon from '@mui/icons-material/ThumbUpAltOutlined';
+import MenuIcon from "@mui/icons-material/Menu";
 import {motion} from 'framer-motion'
+import ScrollDialog from './ScrollDialog'
 
 
 // const mystyles = (theme) => ({
@@ -67,38 +71,95 @@ const openSite = (url) => {
 
   const classes = useStyles()   
 
+const [comments, setComments] = React.useState([])
+const [modalUp, setModalUp] = React.useState(false)
+
+
+const handleCommentsClick = () => {
+   // API.getComments(props.sub,props.id).then(setComments)
+   // API.getComments(props.perma).then(setComments)
+   props.passData(true)
+    setModalUp(true)
+   console.log('ModalUp antes del set : '+modalUp)
+  // setModalUp(true)
+  // console.log('ModalUp despues del set : '+props.passData(true))
+    
+
+   // return(<ScrollDialog onClose={handleClose}/>)
+}
+
+const handleChange = (e) => {
+  props.onChange(modalUp)
+}
+
+// React.useEffect(() => {
+//   if ((comments) && (comments.length > 0)){
+//    return ( <div>hay comentarios</div>)
+//   }
+// }, [modalUp])
+
+
+React.useEffect(() => {
+  if ((comments) && (comments.length > 0)){
+   console.log(comments)
+  }
+}, [comments])
+
   return (
     <>     
+    
     <ThemeProvider theme={theme}>
     {/* <Grid item xs={12} sm={6} md={12}> */}
-    
-      <Paper onClick={e=>openSite(props.url)} elevation={5} style={{backgroundColor:'#ddd'}}>
-        <Box style={{backgroundColor: props.col}} >
-          <Grid container direction='row'>
+      <Paper  elevation={5} style={{backgroundColor:'#ddd'}}>
 
-            <Grid item xs={6} sm={6} md={6} >
-              <Typography ml={1}
-                         // fontWeight='600' 
-                         // fontSize='0.8rem' 
-                          variant="body3">{props.num_comments}
-              </Typography>
+          <Grid container direction='row' style={{backgroundColor: props.col}} display='-ms-inline-flexbox'>                        
+            <Grid item xs={1} sm={1} md={1} p={0.5}>
+            {/* <Box p={0} sx={{display: 'flex', flexDirection: 'row', alignItems: 'center'}}> */}
+                    {/* <Box> */}
+                    <ThumbUpAltOutlinedIcon />
+                    {/* </Box> */}
+            </Grid>
+            <Grid item xs={1} sm={1} md={1} p={0.5} textAlign='start' ml={1}>
+                    <Typography 
+                        sx={{fontWeight: '400', fontSize: '0.8rem'}}
+                        variant="display1"                       
+                        >{props.ups}
+                    </Typography>
+            {/* </Box> */}
             </Grid>
 
-            <Grid item xs={6} sm={6} md={6} textAlign='end'>
+            <Grid item xs={9} sm={9} md={9} p={0.5} textAlign='end'>
               <Typography mr={1}               
                           fontWeight='600' 
                           fontSize='0.8rem' 
-                          variant="caption">{props.subject}
+                          variant="display1">{props.subject}
               </Typography>
             </Grid>
-
           </Grid>
+
+        <Box onClick={()=>openSite(props.url)} p={1} style={{cursor:'pointer'}}>
+          <Typography fontSize='1rem' variant="caption" align='right'> {props.title} </Typography>
         </Box>
-        <Box p={1} style={{cursor:'pointer'}}>
-          <Typography fontSize='1rem' variant="caption" align='left'> {props.title} </Typography>
-          <br/><br/><br/>
+        <Box p={1}>
           <Divider />
-          <Typography fontSize='.8rem' variant="caption" textAlign='left'> {API.UTCtoDate(props.utc)} </Typography>
+          <Box p={0} sx={{display: 'flex', flexDirection: 'row', alignItems: 'baseline', justifyContent: 'space-between' }}>
+              <Typography variant="body3" > {API.UTCtoDate(props.utc)} </Typography>
+
+              
+              <IconButton
+                size="small"
+                color="inherit"
+                aria-label="menu"
+               // onClick={ () =>  props.passData(true)}
+                onClick={() => handleCommentsClick()}
+              >
+                    <Typography 
+                        mr={1}
+                        variant="body3">{props.num_comments}
+                    </Typography>
+                    <ForumOutlinedIcon />
+              </IconButton>
+          </Box>
         </Box>
       </Paper>
     </ThemeProvider>

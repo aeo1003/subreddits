@@ -19,18 +19,50 @@ try {
 
 }
 
+export async function getComments(perma) {
+  try {
+     // const res = await fetch(`https://www.reddit.com/r/${sub}/comments/${id}/data.json`); //?limit=100
+      //const res = await fetch(`https://www.reddit.com/r/${sub}/comments/${id}/data.json`); //?limit=100
+     // https://www.reddit.com/r/comments/vf4l0u/data.json
+      const splited = perma.split('/')
+    //  console.log(splited)
+      const url = 'https://www.reddit.com/r/'+ splited[2] +'/comments/'+ splited[4] +'/data.json'
+
+    //  console.log('url : '+url)
+      let d = []
+
+
+      const res = await fetch(url); //?limit=100
+      const data = await res.json();
+     // console.log(data)
+   
+        data[1].data.children.map(p => {
+          //console.log(d.length)
+          (!p.data.stickied || p.data.body.length > 10)
+          ? d.push(p)
+          : null
+        })
+    
+      
+      return d;
+  }catch (error) {
+      console.log(error);
+  }
+  
+  }
+
 
 export function UTCtoDate(utc) {
 
   let d = new Date(utc*1000);
- // console.log(d.toLocaleString());
+ // console.log(d);
 
 
   // var utcSeconds = utc;
   // var d = new Date(0) // The 0 there is the key, which sets the date to the epoch
   // d.setUTCSeconds(utcSeconds)
   // console.log(d)
-  return d.toLocaleString();
+  return d.toLocaleDateString();
 }
 
 export function getTemas(posts,colores) {

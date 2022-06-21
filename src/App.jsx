@@ -8,6 +8,7 @@ import  ButtonAppBar  from './components/ButtonAppBar'
 import './App.css'
 import BlockOfNews from './components/BlockOfNews'
 import { SubsContext } from './Contexts/SubsContext'
+import ScrollDialog from './components/ScrollDialog';
 //import {title} from './components/ButtonAppBar';
 
 const useStyles = makeStyles(() => ({
@@ -48,9 +49,11 @@ export default function App() {
   // const classes = useStyles()
   
   return (
-    <>  
+    <>
+
       <ButtonAppBar onChange={(e) => reloadPosts(e)} value={title} />
-      <BlockOfNews posts={posts} temas={temas}/>
+      <BlockOfNews posts={posts} temas={temas} titu={title}/>
+      {/* <ScrollDialog /> */}
     </>
   )
 }

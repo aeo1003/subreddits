@@ -37,8 +37,11 @@ export default function ButtonAppBar(props) {
 
   const styles = {
     active: {
+      //color: 'orange',
+      color: 'rgba(9, 50, 255, 1)',
+      backgroundColor: 'orange',
       visibility: "visible",
-      transition: "all 0.5s"
+      transition: "all 1s"
     },
     hidden: {
       visibility: "hidden",
@@ -47,12 +50,8 @@ export default function ButtonAppBar(props) {
     }
   }
 
-React.useEffect(() => {
-<AppBar style={ styles.active } />
-})
-
   return (
-  <AppBar style={ scrollDirection === "up" ? styles.hidden : styles.active } position="sticky" color="primary">
+  <AppBar style={ scrollDirection === "up" ? styles.hidden : styles.active }  position="sticky" color="primary">
     <Toolbar>
       <IconButton
         size="large"
@@ -72,16 +71,17 @@ React.useEffect(() => {
         onClose={handleMenuClose}
       >
 
-
         {subnames.map((sub, index) => (
-          <MenuItem sx={{color: '#222'}} key={index} onClick={(e) => handleMenuClose(e)}>{sub}</MenuItem>
+          <MenuItem sx={{color: '#222'}} key={index} onClick={(e) => handleMenuClose(e)}>
+           <Typography variant='div'> {sub}</Typography>
+          </MenuItem>
         ))}
 
       </Menu>
       <Typography id='titulo' variant='h4' > {props.value} </Typography>
 
         <IconButton
-          size="large"
+          size="xl"
           edge="end"
           color="inherit"
           aria-label="menu"
