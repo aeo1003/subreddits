@@ -32,22 +32,34 @@ export default function ScrollDialog(props) {
   }, [myText])
 
   React.useEffect(() => {
-    if (open && props.tempComments.length > 0) {
+    if (props.tempComments.length > 0) {
         let t = ''
         props.tempComments.map(item => {
-            t = t + `🤨🤨🤨🤨🤨🤨🤨🤨🤨🤨🤨🤨🤨🤨🤨🤨🤨🤨${item.data.body}`
+            t = t + `${item.data.body}`
         })
         //console.log(t)
         setMyText(t)
       
       const { current: descriptionElement } = descriptionElementRef;
-    //  console.log('esto envio : ', props.tempComments)
-     // const myText = props.tempComments
+
       if (descriptionElement !== null) {
         descriptionElement.focus();
       }
     }
-  }, [open]);
+  }, [open])
+
+  const processData = (body,created) => {
+    return (
+        <div key={created}>
+        {body}
+        <p>.</p>
+        <p>.</p>
+       
+        </div>
+    )
+  }
+
+  const texto = 'esto es una prueba mas de mierda'
 
   return (
     <div>
@@ -69,10 +81,19 @@ export default function ScrollDialog(props) {
             id="scroll-dialog-description"
             ref={descriptionElementRef}
             tabIndex={-1}
+            sx={{color:'#888'}}
           >
-          
+
+        {        
+        props.tempComments.length > 0 
+        ? props.tempComments.map(item => processData(item.data.body, item.data.created) )
+        : null
+        }
+
+
+
             
-            {myText}
+          {/* <b> {myText}</b> */}
 
           </DialogContentText>
           </Typography>
