@@ -75,31 +75,25 @@ const [comments, setComments] = React.useState([])
 const [modalUp, setModalUp] = React.useState(false)
 
 
-const handleCommentsClick = () => {
+const handleCommentsClick = (e) => {
    // API.getComments(props.sub,props.id).then(setComments)
-   // API.getComments(props.perma).then(setComments)
-   props.passData(true)
+   API.getComments(props.perma).then(setComments)
+    console.log('leleleleel')
+   //passTheComments()
+   if(comments.length>0){
+    props.passData(true)
     setModalUp(true)
+   }
    //console.log('e.currentTarget : '+e)
 }
 
-const handleChange = (e) => {
-  if (!modalUp) {
+React.useEffect(() => {
+ if ((comments) && (comments.length > 0)){
+
+    props.passComments(comments)
+    props.passData(true)
     setModalUp(true)
-   } else {
-     setModalUp(false)
-   }
-  props.onChange(modalUp)
-}
-
-React.useEffect(() => {
-  
-}, [modalUp])
-
-
-React.useEffect(() => {
-  if ((comments) && (comments.length > 0)){
-   console.log(comments)
+   //console.log('ahora sí : ',comments)
   }
 }, [comments])
 

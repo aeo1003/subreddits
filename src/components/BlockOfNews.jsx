@@ -16,59 +16,55 @@ export default function BlockOfNews({posts, temas, titu}) {
    const [childData, setChildData] = useState(false)
 
 
-    function bgcolor(v)
-    {
-      return API.prueba(temas,v)
-    }
+                                                                        const useStyles = makeStyles(() => ({
+                                                                            container: {
+                                                                                padding: '10px 10px 10px 10px',
+                                                                            },
+                                                                            item: {
+                                                                                padding: '10px',
+                                                                                    
+                                                                            },
+                                                                            }));
+
+
+    function bgcolor(v) { return API.prueba(temas,v) }
+
+    const [tempComments, setTempComments] = useState([]) 
 
     const handleMenuClose = (e) => {
         setChildData(false)
-        console.log('Esto es e : ' + e)
     }
 
     React.useEffect(() => {
-        console.log('childData : '+childData)
-    },[childData])
-    // const handleChange = (e) => {
-    //    // setChildData(true)
-    //    console.log('Esto es e : ' + e)
-    // }
+      
+       // API.getComments(posts).then(setTempComments)
+    },[tempComments])
+ 
     const passData = (e) => {
-        console.log('y este e : '+e)
+    //    console.log('los supuestos comments son : ', e)
         setChildData(e)
     }
 
-    const useStyles = makeStyles(() => ({
-        container: {
-            padding: '10px 10px 10px 10px',
-        },
-        item: {
-            padding: '10px',
-                 
-        },
-      }));
+    const passComments = (e) => {
+        if (e && e.length > 0) {
+            setTempComments(e)
+          //  console.log('----d   ',e)
+           return e// setTempComments(e)
+        }
+    }
 
-    //   const [childData, setChildData] = React.useState(false)
+    // const passComments = (e) => {setTempComments(e)}
 
-    //   React.useEffect(() => {
-    //    // setChildData(!childData)
-    //    console.log(childData)
-    //     // childData 
-    //     //     ? <ScrollDialog data={childData} handleClose={handleClose} />
-    //     //     : null
-    //     //setChildData(true)
-    //   }, [childData])
-
-    //   const passData = (data) => {
-    //     console.log('esto es data : '+data)
-    //     setChildData(data)
-    //  }
 
     return (
     
     <>
-    {childData ? <ScrollDialog passData={passData} onClose={()=>handleMenuClose()} /> : null}
+   
 
+    {childData && tempComments ? <ScrollDialog midato={234234}  
+    passComments={passComments} passData={passData} 
+    tempComments={tempComments} onClose={handleMenuClose} /> : null}
+    {/* <ScrollDialog midato={234234}  passComments={passComments} passData={passData} tempComments={[...tempComments]} onClose={handleMenuClose} /> */}
     {/* <ScrollDialog passData={passData} onClose={handleClose}/> */}
     {/* <motion.div animate={{scale: 1 }} initial={{scale:0}}> </motion.div> */}
         <Box ml={2} mt={4}>
@@ -78,20 +74,21 @@ export default function BlockOfNews({posts, temas, titu}) {
                 <Grid item key={post.data.created}  xs={4} sm={4} md={2}>
                     
                         <Datos 
-                        key={post.data.created_utc} 
-                        id={post.data.id}
-                        author={post.data.author} 
-                        num_comments={post.data.num_comments} 
-                        utc={post.data.created_utc} 
-                        col={bgcolor(post.data.link_flair_text)} 
-                        url={post.data.url} 
-                        isChecked={false} 
-                        title={post.data.title}
-                        subject={post.data.link_flair_text}
-                        sub={titu}
-                        perma={post.data.permalink}
-                        ups = {post.data.ups}
-                        passData={passData}
+                            key={post.data.created_utc} 
+                            id={post.data.id}
+                            author={post.data.author} 
+                            num_comments={post.data.num_comments} 
+                            utc={post.data.created_utc} 
+                            col={bgcolor(post.data.link_flair_text)} 
+                            url={post.data.url} 
+                            isChecked={false} 
+                            title={post.data.title}
+                            subject={post.data.link_flair_text}
+                            sub={titu}
+                            perma={post.data.permalink}
+                            ups = {post.data.ups}
+                            passData={passData}
+                            passComments={passComments}
                         />
                     
                 </Grid>
@@ -100,7 +97,7 @@ export default function BlockOfNews({posts, temas, titu}) {
                 
             </Masonry>
           </Box>
-    
+         
          
     </>
 
