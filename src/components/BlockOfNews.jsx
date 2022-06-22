@@ -16,15 +16,15 @@ export default function BlockOfNews({posts, temas, titu}) {
    const [childData, setChildData] = useState(false)
 
 
-                                                                        const useStyles = makeStyles(() => ({
-                                                                            container: {
-                                                                                padding: '10px 10px 10px 10px',
-                                                                            },
-                                                                            item: {
-                                                                                padding: '10px',
-                                                                                    
-                                                                            },
-                                                                            }));
+                                                    const useStyles = makeStyles(() => ({
+                                                        container: {
+                                                            padding: '10px 10px 10px 10px',
+                                                        },
+                                                        item: {
+                                                            padding: '10px',
+                                                                
+                                                        },
+                                                        }));
 
 
     function bgcolor(v) { return API.prueba(temas,v) }
@@ -35,26 +35,19 @@ export default function BlockOfNews({posts, temas, titu}) {
         setChildData(false)
     }
 
-    React.useEffect(() => {
-      
-       // API.getComments(posts).then(setTempComments)
+    React.useEffect(() => {      
     },[tempComments])
  
     const passData = (e) => {
-    //    console.log('los supuestos comments son : ', e)
         setChildData(e)
     }
 
     const passComments = (e) => {
         if (e && e.length > 0) {
             setTempComments(e)
-          //  console.log('----d   ',e)
-           return e// setTempComments(e)
+           return e
         }
     }
-
-    // const passComments = (e) => {setTempComments(e)}
-
 
     return (
     
@@ -64,9 +57,7 @@ export default function BlockOfNews({posts, temas, titu}) {
     {childData && tempComments ? <ScrollDialog midato={234234}  
     passComments={passComments} passData={passData} 
     tempComments={tempComments} onClose={handleMenuClose} /> : null}
-    {/* <ScrollDialog midato={234234}  passComments={passComments} passData={passData} tempComments={[...tempComments]} onClose={handleMenuClose} /> */}
-    {/* <ScrollDialog passData={passData} onClose={handleClose}/> */}
-    {/* <motion.div animate={{scale: 1 }} initial={{scale:0}}> </motion.div> */}
+    
         <Box ml={2} mt={4}>
             <Masonry columns={{ xs: 1, sm: 2, md:3, lg:4 }} spacing={2}>
             

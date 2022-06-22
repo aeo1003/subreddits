@@ -61,30 +61,21 @@ const theme = createTheme({
 
 
 export default function Datos(props) {
-  //console.log(props)
   
 const openSite = (url) => {
   //useStyles()
   window.open(url)
- // console.log(url)
   }
 
 const classes = useStyles()   
 
 const [comments, setComments] = React.useState([])
-const [modalUp, setModalUp] = React.useState(false)
-
 
 const handleCommentsClick = (e) => {
-   // API.getComments(props.sub,props.id).then(setComments)
    API.getComments(props.perma).then(setComments)
-    console.log('leleleleel')
-   //passTheComments()
    if(comments.length>0){
     props.passData(true)
-    setModalUp(true)
    }
-   //console.log('e.currentTarget : '+e)
 }
 
 React.useEffect(() => {
@@ -92,8 +83,6 @@ React.useEffect(() => {
 
     props.passComments(comments)
     props.passData(true)
-    setModalUp(true)
-   //console.log('ahora sí : ',comments)
   }
 }, [comments])
 
