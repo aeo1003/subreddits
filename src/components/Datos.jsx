@@ -74,15 +74,13 @@ const [comments, setComments] = React.useState([])
 const handleCommentsClick = (e) => {
    API.getComments(props.perma).then(setComments)
    if(comments.length>0){
-    props.passData(true)
    }
 }
 
 React.useEffect(() => {
  if ((comments) && (comments.length > 0)){
-
-    props.passComments(comments)
-    props.passData(true)
+   props.passComments(comments)
+   props.passData(true)
   }
 }, [comments])
 

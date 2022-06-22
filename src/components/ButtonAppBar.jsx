@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {MenuItem, AppBar, Menu, Toolbar, Typography, IconButton, Input} from '@mui/material';
+import {MenuItem, AppBar, Menu, TextField, Toolbar, Typography, IconButton, Input} from '@mui/material';
 import { SubsContext } from '../Contexts/SubsContext';
 
 import AccountIcon from "@mui/icons-material/AccountCircle";
@@ -17,7 +17,7 @@ import BasicTextField from './BasicTextField';
 
 export default function ButtonAppBar(props) {
 
-  //const colores = ['#AFDB37','#89C5D3','#8C9DCF','#EAACBD','#E9BB2','#a8D0C6','#b7EDC3','#DEA4C0','#f1ed22','#dcd2d3','#eae4d2','#c6d5d8','#717876','#849498'] 
+  const colores = ['#AFDB37','#89C5D3','#8C9DCF','#EAACBD','#E9BB2','#a8D0C6','#b7EDC3','#DEA4C0','#f1ed22','#dcd2d3','#eae4d2','#c6d5d8','#717876','#849498'] 
   //const colores = ['#6b6a6b','#77d4ff','#5e947b','#397198','#85c4c4','#fff777','#1f4c82','#8cb047','#f3cac9','#f3cac9','#b61d33','#be4576','#76e38d','#b268f6','#77fdff','#ffad77','#fc616c','#6867ac','#6867ac','#a75f9a','#309472','#d05171','#ebc057','#dccdbe','#63b0ae','#d8593e']
   let subnames = ['Futurology','Reactjs','Science','Worldnews','Learnjavascript','Technology','Singularity']
 
@@ -25,7 +25,10 @@ export default function ButtonAppBar(props) {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const isMenuOpen = Boolean(anchorEl);
 
-
+  const onSubmit = (e) => {
+    e.preventDefault();
+    console.log("refresh prevented");
+  };
 
 
 
@@ -40,7 +43,8 @@ export default function ButtonAppBar(props) {
       transition: "all 1s"
     },
     hidden: {
-      visibility: "hidden",
+      backgroundColor: 'lightgray)',
+      visibility: "hidden",      
       transition: "all 0.5s",
       transform: "translateY(-100%)"
     }
@@ -48,7 +52,6 @@ export default function ButtonAppBar(props) {
 
   const handleMenuClick = (e) => {
     setNewsub('')
-    console.log('el otro e : '+e.currentTarget)
     setAnchorEl(e.currentTarget)
   };
 
@@ -61,38 +64,31 @@ export default function ButtonAppBar(props) {
   };
 
 
-  const handleAddClick = (e) => {
-    console.log('el otro e : '+e.currentTarget)
-    setAnchorEl(e.currentTarget)
-  };
 
-  const handleAddClose = (e) => {
-    setAnchorEl(null);
-    
-    if (subnames.includes(e.currentTarget.innerText)) {      
-      props.onChange(e.currentTarget.innerText)
-    }
-  };
-
-
-const enviar = (e) => {
-  alert(e)
-}
-
-
-
-
+const stopImmediatePropagation = (e) => {
+  e.stopPropagation();
+  e.preventDefault();
+};
 
 
 const [newsub, setNewsub] = React.useState('')
 
+
+
 const handleKeyPress = (event) => {
-  console.log(newsub.length)
-  if(event.key === 'Enter' && newsub.length>0){
-    console.log(newsub)
+  
+  const  tempnewsub = document.getElementById('textinput').value
+  setNewsub(tempnewsub)
+
+  if(event.key === 'Enter' && newsub.length>0){   
     setAnchorEl(null)
-    props.onChange(newsub)
-  }else {(setNewsub(newsub+event.key))}
+    const  tempnewsub = document.getElementById('textinput').value
+    setNewsub(tempnewsub)
+
+   // alert('esto envío a App : ',tempnewsub)
+    props.onChange(tempnewsub)
+
+  }
 }
 
   return (
@@ -124,10 +120,14 @@ const handleKeyPress = (event) => {
         }          
         
         <br/>
-
-            Add sub: <Input  type="text" name="fname" onKeyPress={handleKeyPress}/>           
+        <MenuItem onClickCapture={stopImmediatePropagation}
+          onKeyDown={e => e.stopPropagation()}>
+            <form onSubmit={onSubmit}>
+            Add sub: <input id='textinput'  type="text" name="fname" 
+            onClickCapture={stopImmediatePropagation}  onKeyDown={handleKeyPress}/>           
             {/* <input type="text" onclick="myFunction()" value="Submit"/> */}
-
+            </form>
+            </MenuItem>
             
       </Menu>
 
@@ -137,7 +137,7 @@ const handleKeyPress = (event) => {
 
       <Typography id='titulo' variant='h4' > {props.value} </Typography>
 
-        <IconButton
+        {/* <IconButton
           size="xl"
           edge="end"
           color="inherit"
@@ -146,8 +146,8 @@ const handleKeyPress = (event) => {
           onClick={(event) => handleMenuClick(event)}
         >
         <AddCircleOutlineOutlinedIcon />
-        </IconButton>
-        {}
+        </IconButton> */}
+      
     </Toolbar>
   </AppBar>
 // </div>

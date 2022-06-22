@@ -39,6 +39,7 @@ export default function App() {
   },[posts])
 
   const reloadPosts = (title) => {
+    console.log('titulo : ',title)
     setTitle(title)
     API.getPosts(title).then(setPosts)
   }

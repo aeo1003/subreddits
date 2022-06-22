@@ -1,31 +1,32 @@
 import React from "react"
 
-export let testVar = 'esto es una prueba de contexto'
 
 export async function getPosts(subreddit) {
 try {
     const res = await fetch(`https://www.reddit.com/r/${subreddit}/hot.json?limit=50`); //?limit=100
     const data = await res.json();
     let d = []
-    data.data.children.map(p => {
-     (p.data.link_flair_text != 'meta')
-       ? d.push(p)
-       : null
-    })
-    return d;
+    console.log('data.data : ',data.data)
+    if(data.data !== undefined){
+        data.data.children.map(p => {
+        (p.data.link_flair_text != 'meta')
+          ? d.push(p)
+          : null
+        })
+        return d
+      }
+    //console.log(d)
+    
 }catch (error) {
     console.log(error);
+    //`<div>No existe ese subreddit</div>`
 }
 
 }
 
 export async function getComments(perma) {
   try {
-     // const res = await fetch(`https://www.reddit.com/r/${sub}/comments/${id}/data.json`); //?limit=100
-      //const res = await fetch(`https://www.reddit.com/r/${sub}/comments/${id}/data.json`); //?limit=100
-     // https://www.reddit.com/r/comments/vf4l0u/data.json
       const splited = perma.split('/')
-    //  console.log(splited)
       const url = 'https://www.reddit.com/r/'+ splited[2] +'/comments/'+ splited[4] +'/data.json'
 
     //  console.log('url : '+url)
@@ -68,13 +69,16 @@ export function UTCtoDate(utc) {
 export function getTemas(posts,colores) {
 
         let filteredArray = [];
-        posts.map(post => {
-          (!filteredArray.includes(post.data.link_flair_text)&&(post.data.link_flair_text!='meta'))
-             ? filteredArray.push(post.data.link_flair_text)
-             : null
-          }
+        (posts !== undefined && posts.length > 0)
+        ?  posts.map(post => {
+            (!filteredArray.includes(post.data.link_flair_text)&&(post.data.link_flair_text!='meta'))
+              ? filteredArray.push(post.data.link_flair_text)
+              : null
+            }
+        
         )
-
+        : null
+        
        let tempArray = [];
        for(let i = 0; i < filteredArray.length; i++){
         let item = {
